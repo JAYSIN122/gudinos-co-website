@@ -1,6 +1,6 @@
 # Gudino's & Co. website
 
-A responsive one-page website using verified content and project photography from the public Gudino's & Co. Instagram profile.
+A high-end, responsive portfolio website using verified content and project photography from the public Gudino's & Co. Instagram profile.
 
 ## Run locally
 
