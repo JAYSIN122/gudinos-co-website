@@ -7,6 +7,26 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 
 document.querySelector("[data-year]").textContent = new Date().getFullYear();
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+const startAtTop = () => {
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+};
+
+startAtTop();
+window.addEventListener("pageshow", startAtTop);
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const id = link.getAttribute("href").slice(1);
+    const target = id === "top" ? document.body : document.getElementById(id);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+  });
+});
+
 const updateHeader = () => {
   header.classList.toggle("scrolled", window.scrollY > 30);
 };
